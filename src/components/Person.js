@@ -5,9 +5,9 @@ class Person extends React.Component {
    render() {
       return (
          <div className="item-container">
-            <label className={'info-label'}>
+            <p className={'info-label'}>
                Tyrion Lannister
-            </label>
+            </p>
             <button className="got-button edit" type="button">
                Edit
             </button>
