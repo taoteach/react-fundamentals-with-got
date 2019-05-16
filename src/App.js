@@ -10,37 +10,43 @@ import Person from './components/Person';
  * }
  */
 
-function App() {
-   const tyrion = {
-      id: 1,
-      name: 'Tyrion Lannister',
-      isDead: false
-   };
-   const jon = {
-      id: 2,
-      name: 'Jon Snow',
-      isDead: false
-   };
-   const dany = {
-      id: 3,
-      name: 'Daenerys Targaryen',
-      isDead: false
-   };
+class App extends React.Component {
+   state = {
+      list: [{
+         id: 1,
+         name: 'Tyrion Lannister',
+         isDead: false
+      }, {
+            id: 2,
+            name: 'Jon Snow',
+            isDead: false
+      }, {
+         id: 3,
+         name: 'Daenerys Targaryen',
+         isDead: false
+      }]
+   }
 
-   return (
-      <div>
-         <header>
-            <h1>GOT, WHO WILL DIE?</h1>
-         </header>
-         <main>
-            <div className="list-container">
-               <Person data={tyrion} />
-               <Person data={jon} />
-               <Person data={dany} />
-            </div>
-         </main>
-      </div>
-   );
+   render() {
+      const { list } = this.state;
+      return (
+         <div>
+            <header>
+               <h1>GOT, WHO WILL DIE?</h1>
+            </header>
+            <main>
+               <div className="list-container">
+                  {list.map((item) => (
+                     <Person 
+                        key={`item-${item.id}`} 
+                        data={item} 
+                     />
+                  ))}
+               </div>
+            </main>
+         </div>
+      );
+   }
 }
 
 export default App;
