@@ -22,6 +22,20 @@ class App extends React.Component {
       }));
    };
 
+   updatePerson = task => {
+      const { list } = this.state;
+      const updatedList = list.map(item => {
+         if (item.id === task.id) {
+            return task;
+         }
+         return item;
+      });
+
+      this.setState(() => ({
+         list: updatedList
+      }));
+   };
+
    handleInputChange = event => {
       this.setState({
          inputValue: event.target.value
@@ -57,7 +71,7 @@ class App extends React.Component {
                <div className="action-bar">{this.rendercreateForm()}</div>
                <div className="list-container">
                   {list.map(item => (
-                     <Person key={`item-${item.id}`} data={item} />
+                     <Person key={`item-${item.id}`} data={item} onChange={this.updatePerson} />
                   ))}
                </div>
             </main>
