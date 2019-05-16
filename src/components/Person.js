@@ -19,6 +19,10 @@ class Person extends React.Component {
          editing: !prevState.editing
       }));
    };
+   handleIsDead = e => {
+      const { data, onChange } = this.props;
+      onChange({ ...data, isDead: !data.isDead });
+   };
 
    doEdit = event => {
       const { data, onChange } = this.props;
@@ -54,7 +58,10 @@ class Person extends React.Component {
       const { data } = this.props;
       return (
          <div className="item-container">
-            <p className={'info-label'}>{data.name}</p>
+            <label className={`info-label ${data.isDead && 'death-text'}`}>
+               <input type="checkbox" onChange={this.handleIsDead} checked={data.isDead} />
+               {data.name}
+            </label>
             <button className="got-button edit" onClick={this.handleEditing} type="button">
                Edit
             </button>
