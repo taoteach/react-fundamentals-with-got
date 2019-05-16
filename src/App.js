@@ -11,23 +11,24 @@ import Person from './components/Person';
  */
 
 class App extends React.Component {
-   render() {
-      const tyrion = {
+   state = {
+      list: [{
          id: 1,
          name: 'Tyrion Lannister',
          isDead: false
-      };
-      const jon = {
-         id: 2,
-         name: 'Jon Snow',
-         isDead: false
-      };
-      const dany = {
+      }, {
+            id: 2,
+            name: 'Jon Snow',
+            isDead: false
+      }, {
          id: 3,
          name: 'Daenerys Targaryen',
          isDead: false
-      };
-      
+      }]
+   }
+
+   render() {
+      const { list } = this.state;
       return (
          <div>
             <header>
@@ -35,9 +36,12 @@ class App extends React.Component {
             </header>
             <main>
                <div className="list-container">
-                  <Person data={tyrion} />
-                  <Person data={jon} />
-                  <Person data={dany} />
+                  {list.map((item) => (
+                     <Person 
+                        key={`item-${item.id}`} 
+                        data={item} 
+                     />
+                  ))}
                </div>
             </main>
          </div>
